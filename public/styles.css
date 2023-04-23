@@ -1,0 +1,26 @@
+.bucket {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+img {
+    max-width: "200px";
+    max-height: "200px";
+    height: 500px;
+    width: 500px;
+    display: block;
+    margin: auto;
+}
+
+
+@font-face {
+    font-family: "Kimberley";
+    src: url(kimberle.ttf) format("truetype");
+}
+
+h1 {
+    font-family: "Kimberley", sans-serif
+}
