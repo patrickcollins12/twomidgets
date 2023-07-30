@@ -21,13 +21,15 @@
         const handler = {
             get: function(target, property) {
                 console.log(`Property ${property} has been read.`);
-                return target[property];
+                return Reflect.get(...arguments);
             },
             set: function(target, property, value) {
                 console.log(`Property ${property} has been set to ${value}.`);
+                return Reflect.set(...arguments);
             },
             apply: function(target, thisArg, args) {
                 console.log(`Function ${thisArg} has been called.`);
+                return Reflect.apply(...arguments);
             }
         }
 
