@@ -16,8 +16,8 @@
                 // Do whatever you want with fetch request
                 let temp = target.apply(that, args);
                 console.log("body>>");
-                console.log(target.body);
-                console.log(that.body);
+                console.log(target.request);
+                console.log(that.request);
                 temp.then((res) => {
                     // After completion of request
                     console.log(res);
