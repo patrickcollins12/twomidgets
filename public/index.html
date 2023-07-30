@@ -27,10 +27,10 @@
                 console.log(`Property ${property} has been set to ${value}.`);
                 return Reflect.set(...arguments);
             },
-            apply: function(target, thisArg, args) {
-                console.log(`Function ${thisArg} has been called.`);
-                return Reflect.apply(...arguments);
-            }
+            // apply: function(target, thisArg, args) {
+            //     console.log(`Function ${thisArg} has been called.`);
+            //     return Reflect.apply(...arguments);
+            // }
         }
 
         amplitude = new Proxy(amplitude_proxied, handler);
