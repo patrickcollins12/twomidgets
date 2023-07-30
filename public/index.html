@@ -14,11 +14,12 @@
             apply: function (target, that, args) {
                 // fetch arguments: fetch(url, {header:"xx", body:"yy"}) 
                 let url = args[0]
-                let request_body = args[1].body
+                let request_body_str = args[1].body
                 if (url.includes("amplitude")) {
                     // console.log("Amplitude request body: ",request_body);
-                    if ("events" in request_body) {
-                        request_body.events.forEach(event => {
+                    const reqj = JSON.parse(request_body_str);
+                    if ("events" in reqj) {
+                        reqj.events.forEach(event => {
                             if ("event_type" in event) {
                                 console.log("event_type:", event.event_type)
                             }    
