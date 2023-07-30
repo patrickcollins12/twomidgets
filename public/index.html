@@ -15,7 +15,7 @@
                 // args holds argument of fetch function
                 // Do whatever you want with fetch request
                 let temp = target.apply(that, args);
-                console.log(temp);
+                console.log(temp.body);
                 temp.then((res) => {
                     // After completion of request
                     console.log(res);
