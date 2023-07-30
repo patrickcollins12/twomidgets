@@ -10,28 +10,30 @@
 
     <!-- SETUP A PROXY FOR XHR CALLS TO SNIFF AND CAPTURE AMPLITUDE REQUESTS -->
     <script>
+        function sniffAmplitude(reqj) {
+            if ("events" in reqj) {
+                reqj.events.forEach(event => {
+                    if ("event_type" in event) {
+                        console.log("Fulow has sniffed an amplitude 'event_type':", event.event_type)
+                    }    
+                    if ("event_properties" in event) {
+                        console.log("Fulow has sniffed some amplitude 'event_properties': ", event.event_properties);
+                    }
+                })
+            }                
+        }
+
         window.fetch = new Proxy(window.fetch, {
             apply: function (target, that, args) {
-
                 // fetches arguments are as follows: fetch(url, {header:"xx", body:"yy"}) 
                 if (args[0].includes("amplitude")) {
-                    let reqj = JSON.parse(args[1].body)
-                    if ("events" in reqj) {
-                        reqj.events.forEach(event => {
-                            if ("event_type" in event) {
-                                console.log("Fulow has sniffed an amplitude 'event_type':", event.event_type)
-                            }    
-                            if ("event_properties" in event) {
-                                console.log("Fulow has sniffed some amplitude 'event_properties': ", event.event_properties);
-                            }
-                        })
-                    }                
+                    sniffAmplitude( JSON.parse(args[1].body) )
                 }
 
                 // call the original fetch method
                 return target.apply(that, args);
-            },
-            });
+            }
+        });
     </script>  
 
     <!-- SETUP AMPLITUDE -->
