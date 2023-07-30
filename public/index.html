@@ -11,19 +11,13 @@
     <script>
         window.fetch = new Proxy(window.fetch, {
             apply: function (target, that, args) {
-                let temp = target.apply(that, args);
-                
+                // fetch arguments: fetch(url, {header:"xx", body:"yy"}) 
                 let url = args[0]
                 let request_body = args[1].body
-                if (args[0].includes("amplitude")) {
+                if (url.includes("amplitude")) {
                     console.log("Amplitude request body: ",request_body);
                 }
-                
-                // temp.then((res) => {
-                //     // After completion of request
-                //     // console.log(res);
-                // });
-                return temp;
+                target.apply(that, args);
             },
             });
     </script>  
