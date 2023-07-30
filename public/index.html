@@ -16,17 +16,18 @@
                 let url = args[0]
                 let request_body = args[1].body
                 if (url.includes("amplitude")) {
-                    console.log("Amplitude request body: ",request_body);
-                    for (event in request_body.events) {
-                        console.log(event.event_type);
-                        if (event_properties in event) {
-                            console.log(event.event_properties);
-                        }
-                    }
-                }
+                    // console.log("Amplitude request body: ",request_body);
+                    if ("events" in request_body) {
+                        request_body.events.forEach(event => {
+                            if ("event_type" in event) {
+                                console.log("event_type:", event.event_type)
+                            }    
+                            if ("event_properties" in event) {
+                                console.log(event.event_properties);
+                            }
+                        })
+                    }                }
                 return target.apply(that, args);
-                
-
             },
             });
     </script>  
