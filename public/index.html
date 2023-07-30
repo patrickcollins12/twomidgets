@@ -12,15 +12,17 @@
     <script>
         window.fetch = new Proxy(window.fetch, {
             apply: function (target, that, args) {
-                // args holds argument of fetch function
-                // Do whatever you want with fetch request
                 let temp = target.apply(that, args);
-                // console.log("body>>");
-                console.log(args);
-                // console.log(that.request);
+                
+                let url = args[0]
+                let request_body = args[1].body
+                if (args[0].includes("amplitude")) {
+                    console.log("Amplitude request body!",request_body);
+                }
+                
                 temp.then((res) => {
                     // After completion of request
-                    console.log(res);
+                    // console.log(res);
                 });
                 return temp;
             },
