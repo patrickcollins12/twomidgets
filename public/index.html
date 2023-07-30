@@ -22,6 +22,9 @@
             get(target, property) {
                 console.log(`Property ${property} has been read.`);
                 return target[property];
+            },
+            set(target, property, value) {
+                console.log(`Property ${property} has been set to ${value}.`);
             }
         }
 
