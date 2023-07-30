@@ -12,12 +12,10 @@
     <script>
         window.fetch = new Proxy(window.fetch, {
             apply: function (target, that, args) {
-                // fetch arguments: fetch(url, {header:"xx", body:"yy"}) 
-                let url = args[0]
-                let request_body_str = args[1].body
-                if (url.includes("amplitude")) {
-                    // console.log("Amplitude request body: ",request_body);
-                    const reqj = JSON.parse(request_body_str);
+
+                // fetches arguments are as follows: fetch(url, {header:"xx", body:"yy"}) 
+                if (args[0].includes("amplitude")) {
+                    let reqj = JSON.parse(args[1].body)
                     if ("events" in reqj) {
                         reqj.events.forEach(event => {
                             if ("event_type" in event) {
@@ -27,7 +25,10 @@
                                 console.log(event.event_properties);
                             }
                         })
-                    }                }
+                    }                
+                }
+
+                // call the original fetch method
                 return target.apply(that, args);
             },
             });
