@@ -21,8 +21,8 @@
                             if ("event_type" in event) {
                                 console.log("Fulow has sniffed an amplitude 'event_type':", event.event_type)
                             }    
-                            if ("Fulow has sniffed an amplitude 'event_properties'" in event) {
-                                console.log(event.event_properties);
+                            if ("event_properties" in event) {
+                                console.log("Fulow has sniffed some amplitude 'event_properties': ", event.event_properties);
                             }
                         })
                     }                
