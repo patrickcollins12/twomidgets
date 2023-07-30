@@ -15,9 +15,9 @@
                 // args holds argument of fetch function
                 // Do whatever you want with fetch request
                 let temp = target.apply(that, args);
-                console.log("body>>");
-                console.log(target.request);
-                console.log(that.request);
+                // console.log("body>>");
+                console.log(args);
+                // console.log(that.request);
                 temp.then((res) => {
                     // After completion of request
                     console.log(res);
