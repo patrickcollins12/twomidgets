@@ -18,10 +18,27 @@
                 if (url.includes("amplitude")) {
                     console.log("Amplitude request body: ",request_body);
                 }
-                target.apply(that, args);
+                return target.apply(that, args);
+                
+
             },
             });
     </script>  
+
+
+<!--                 
+let url = args[0]
+let request_body = args[1].body
+if (args[0].includes("amplitude")) {
+    console.log("Amplitude request body: ",request_body);
+}
+
+temp.then((res) => {
+    // After completion of request
+    // console.log(res);
+});
+return temp; -->
+
 
     <!-- SETUP AMPLITUDE -->
     <script type="text/javascript">
