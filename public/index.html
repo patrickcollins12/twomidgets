@@ -19,12 +19,15 @@
         amplitude_proxied = amplitude 
 
         const handler = {
-            get(target, property) {
+            get: function(target, property) {
                 console.log(`Property ${property} has been read.`);
                 return target[property];
             },
-            set(target, property, value) {
+            set: function(target, property, value) {
                 console.log(`Property ${property} has been set to ${value}.`);
+            },
+            apply: function(target, thisArg, args) {
+                console.log(`Function ${thisArg} has been called.`);
             }
         }
 
