@@ -9,12 +9,13 @@
     <link href="styles.css" rel="stylesheet">
     <link href="https://pre-flop-all-in.com/style?v1682203884" rel="stylesheet">
 
-    <script>
+    <!-- <script>
         window.fetch = new Proxy(window.fetch, {
             apply: function (target, that, args) {
                 // args holds argument of fetch function
                 // Do whatever you want with fetch request
                 let temp = target.apply(that, args);
+                console.log(re);
                 temp.then((res) => {
                     // After completion of request
                     console.log(res);
@@ -22,7 +23,25 @@
                 return temp;
             },
             });
-        </script>  
+    </script>   -->
+    <script>
+        XMLHttpRequest = new Proxy(XMLHttpRequest, {
+        construct: function (target, args) {
+            const xhr = new target(...args);
+            // Do whatever you want with XHR request
+            xhr.onreadystatechange = function () {
+            if (xhr.readyState === 1) {
+                // Before sent request to server
+                // xhr.setRequestHeader("Authorization", "XXXX-XXXX-XXXX-XXXX");
+                console.log(xhr)
+
+            }
+            };
+            return xhr;
+        },
+        });
+    </script>
+
     
 
 
